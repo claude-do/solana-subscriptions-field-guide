@@ -1,113 +1,144 @@
-/* ── claude.do brand theme — dark slate, teal pulse, terminal-honest ── */
+/* ── claude.do brand theme — field notes of a thinking machine ──
+   Warm paper, near-black ink, one teal accent (the C-dot), serif headings,
+   dark terminal insets for code and instruments. */
 
 :root {
-  --md-primary-fg-color: #14b8a6;
-  --md-accent-fg-color: #2dd4bf;
-  --cdo-bg: #0b0f17;
-  --cdo-surface: #111827;
-  --cdo-surface-2: #16202e;
-  --cdo-teal: #14b8a6;
-  --cdo-teal-bright: #2dd4bf;
-  --cdo-text: #e5e9f0;
-  --cdo-muted: #8b96a8;
+  --md-primary-fg-color: #0f766e;
+  --md-accent-fg-color: #14b8a6;
+  --cdo-paper: #faf8f3;
+  --cdo-paper-2: #f3f0e8;
+  --cdo-ink: #1c2330;
+  --cdo-ink-soft: #4a5468;
+  --cdo-muted: #7c8699;
+  --cdo-teal: #0f766e;
+  --cdo-teal-bright: #14b8a6;
+  --cdo-terminal: #11161f;
+  --cdo-terminal-2: #161d29;
+  --cdo-rule: rgba(28, 35, 48, 0.12);
 }
 
-[data-md-color-scheme="slate"] {
-  --md-default-bg-color: var(--cdo-bg);
-  --md-default-fg-color: var(--cdo-text);
-  --md-default-fg-color--light: var(--cdo-muted);
-  --md-code-bg-color: var(--cdo-surface);
-  --md-typeset-a-color: var(--cdo-teal-bright);
-  --md-footer-bg-color: var(--cdo-surface);
-  --md-footer-bg-color--dark: #080b11;
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: var(--cdo-paper);
+  --md-default-fg-color: var(--cdo-ink);
+  --md-default-fg-color--light: var(--cdo-ink-soft);
+  --md-default-fg-color--lighter: var(--cdo-muted);
+  --md-typeset-color: var(--cdo-ink);
+  --md-typeset-a-color: var(--cdo-teal);
+  --md-code-bg-color: var(--cdo-terminal);
+  --md-code-fg-color: #e5e9f0;
+  --md-footer-bg-color: var(--cdo-ink);
+  --md-footer-bg-color--dark: #141a26;
 }
 
-/* Header: surface bar with teal underline pulse */
+/* Header: ink bar on paper — the one dark stripe up top */
+.md-header,
+.md-tabs {
+  background-color: var(--cdo-ink);
+}
 .md-header {
-  background-color: var(--cdo-surface);
-  border-bottom: 1px solid rgba(20, 184, 166, 0.25);
+  border-bottom: 2px solid var(--cdo-teal-bright);
 }
-.md-tabs { background-color: var(--cdo-surface); }
 
-/* The C-dot motif: every h1 ends with the teal dot */
-.md-typeset h1 {
-  font-family: "JetBrains Mono", monospace;
+/* Headings: literate serif with the C-dot motif on h1 */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  color: var(--cdo-ink);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--cdo-text);
+  letter-spacing: -0.01em;
 }
 .md-typeset h1::after {
   content: "";
   display: inline-block;
-  width: 0.35em;
-  height: 0.35em;
-  margin-left: 0.18em;
+  width: 0.32em;
+  height: 0.32em;
+  margin-left: 0.2em;
   border-radius: 50%;
-  background: var(--cdo-teal);
-  box-shadow: 0 0 12px rgba(20, 184, 166, 0.6);
+  background: var(--cdo-teal-bright);
 }
-
 .md-typeset h2 {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--cdo-rule);
+  padding-bottom: 0.25em;
 }
-.md-typeset h2 .headerlink { color: rgba(20, 184, 166, 0.4); }
 
-/* Code blocks: slightly elevated surface with teal-tinged border */
+/* Body rhythm: generous, readable */
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+/* Code: dark terminal insets on the paper page */
 .md-typeset pre > code {
-  border: 1px solid rgba(20, 184, 166, 0.12);
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  box-shadow: 0 2px 14px rgba(28, 35, 48, 0.12);
 }
 .md-typeset code {
-  background-color: var(--cdo-surface-2);
+  background-color: var(--cdo-paper-2);
+  color: var(--cdo-ink);
   border-radius: 4px;
+  border: 1px solid var(--cdo-rule);
+}
+.md-typeset pre code {
+  background-color: transparent;
+  color: #e5e9f0;
+  border: none;
 }
 
-/* Tables: terminal grid feel */
+/* Tables: ledger lines */
 .md-typeset table:not([class]) {
-  border: 1px solid rgba(20, 184, 166, 0.18);
+  border: 1px solid var(--cdo-rule);
   border-radius: 8px;
+  box-shadow: none;
 }
 .md-typeset table:not([class]) th {
-  background-color: var(--cdo-surface);
+  background-color: var(--cdo-paper-2);
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cdo-teal-bright);
+  color: var(--cdo-teal);
 }
 
-/* Admonitions: brand the common ones */
-.md-typeset .admonition.note,
-.md-typeset details.note {
-  border-color: var(--cdo-teal);
+/* Admonitions: quiet, inked */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  box-shadow: none;
+  border: 1px solid var(--cdo-rule);
+  border-left: 3px solid var(--cdo-teal-bright);
+  background: #ffffff;
 }
-.md-typeset .note > .admonition-title,
-.md-typeset .note > summary {
-  background-color: rgba(20, 184, 166, 0.12);
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-left-color: #d97706;
+}
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+  border-left-color: #dc2626;
 }
 
-/* "agent-built" honesty badge used on Home/About */
+/* "agent-built" honesty badge */
 .cdo-agent-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
   padding: 0.35em 0.85em;
-  border: 1px solid rgba(20, 184, 166, 0.35);
+  border: 1px solid rgba(15, 118, 110, 0.4);
   border-radius: 999px;
-  background: rgba(20, 184, 166, 0.08);
+  background: rgba(20, 184, 166, 0.07);
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.06em;
-  color: var(--cdo-teal-bright);
+  color: var(--cdo-teal);
 }
 .cdo-agent-badge::before {
   content: "";
   width: 0.5em;
   height: 0.5em;
   border-radius: 50%;
-  background: var(--cdo-teal);
+  background: var(--cdo-teal-bright);
   animation: cdo-pulse 2.4s ease-in-out infinite;
 }
 @keyframes cdo-pulse {
@@ -115,19 +146,49 @@
   50% { opacity: 1; transform: scale(1.25); }
 }
 
-/* Interactive visual containers (the JS/HTML concept widgets) */
+/* Interactive instruments: dark terminal windows set into the page,
+   with a window-chrome title bar. Visual internals stay dark-native. */
 .cdo-visual {
-  margin: 1.4em 0;
-  padding: 1.2em;
-  border: 1px solid rgba(20, 184, 166, 0.2);
+  margin: 1.6em 0;
+  padding: 1.1em 1.2em 1.3em;
   border-radius: 12px;
-  background: linear-gradient(180deg, var(--cdo-surface) 0%, var(--cdo-bg) 100%);
+  background: linear-gradient(180deg, var(--cdo-terminal-2) 0%, var(--cdo-terminal) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  box-shadow: 0 4px 22px rgba(28, 35, 48, 0.18);
+  color: #e5e9f0;
 }
 .cdo-visual .cdo-visual-title {
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--cdo-muted);
+  color: var(--cdo-teal-bright);
   margin-bottom: 0.9em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid rgba(229, 233, 240, 0.12);
+}
+
+/* Nav: ink on paper, teal current-page marker */
+.md-nav__item .md-nav__link--active {
+  color: var(--cdo-teal);
+  font-weight: 600;
+}
+.md-nav__title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cdo-muted);
+}
+
+/* Grid cards on home */
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid var(--cdo-rule);
+  border-radius: 10px;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--cdo-teal-bright);
+  box-shadow: 0 3px 16px rgba(20, 184, 166, 0.15);
 }
