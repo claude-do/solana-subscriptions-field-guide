@@ -1224,12 +1224,12 @@ from one period never carries into the next.
   st.textContent =
     "#cdo-sim .row{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:10px;font-size:.72rem;color:#8b96a8}" +
     "#cdo-sim label{font-family:'JetBrains Mono',monospace;display:flex;flex-direction:column;gap:4px}" +
-    "#cdo-sim input[type=range]{accent-color:#14b8a6;width:150px}" +
-    "#cdo-sim .val{color:#2dd4bf}" +
+    "#cdo-sim input[type=range]{accent-color:#d97757;width:150px}" +
+    "#cdo-sim .val{color:#e8916f}" +
     "#cdo-sim svg{width:100%;height:auto;display:block;background:#0b0f17;border:1px solid #1f2a3a;border-radius:8px}" +
     "#cdo-sim .btns{margin:10px 0}" +
     "#cdo-sim .btns button{font-family:'JetBrains Mono',monospace;font-size:.68rem;margin-right:8px;" +
-    "padding:5px 14px;border-radius:6px;border:1px solid #14b8a6;background:transparent;color:#2dd4bf;cursor:pointer}" +
+    "padding:5px 14px;border-radius:6px;border:1px solid #d97757;background:transparent;color:#e8916f;cursor:pointer}" +
     "#cdo-sim .msg{font-size:.74rem;color:#e5e9f0;min-height:2.4em;margin-top:8px}";
   box.appendChild(st);
 
@@ -1288,7 +1288,7 @@ from one period never carries into the next.
     // alternating period bands
     for (var p = 0, i = 0; p < HOURS; p += s.period, i++) {
       el("rect", { x: x(p), y: 18, width: x(Math.min(p + s.period, HOURS)) - x(p), height: H - 52,
-        fill: i % 2 ? "rgba(20,184,166,0.05)" : "rgba(20,184,166,0.11)" });
+        fill: i % 2 ? "rgba(217,119,87,0.05)" : "rgba(217,119,87,0.11)" });
       el("text", { x: x(p) + 4, y: 30, "font-size": 9, fill: "#8b96a8",
         "font-family": "JetBrains Mono,monospace" }, "period " + (i + 1));
     }
@@ -1305,9 +1305,9 @@ from one period never carries into the next.
       var px = x(pl.t), barMax = H - 86;
       var hgt = Math.max(3, (pl.after / s.cap) * barMax);
       el("rect", { x: px - 4, y: H - 34 - hgt, width: 8, height: hgt, rx: 2,
-        fill: pl.ok ? "#14b8a6" : "#7f1d1d", stroke: pl.ok ? "none" : "#ef4444" });
+        fill: pl.ok ? "#d97757" : "#7f1d1d", stroke: pl.ok ? "none" : "#ef4444" });
       el("text", { x: px - 4, y: H - 40 - hgt, "font-size": 10,
-        fill: pl.ok ? "#2dd4bf" : "#ef4444", "font-family": "JetBrains Mono,monospace" },
+        fill: pl.ok ? "#e8916f" : "#ef4444", "font-family": "JetBrains Mono,monospace" },
         pl.ok ? "✓" : "✗");
       lastTxt = pl.ok
         ? "t=" + pl.t + "h ✓ pulled " + s.amt + " — " + pl.after + "/" + s.cap + " used this period"
