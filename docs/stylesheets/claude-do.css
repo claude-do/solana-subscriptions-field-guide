@@ -1,0 +1,133 @@
+/* ── claude.do brand theme — dark slate, teal pulse, terminal-honest ── */
+
+:root {
+  --md-primary-fg-color: #14b8a6;
+  --md-accent-fg-color: #2dd4bf;
+  --cdo-bg: #0b0f17;
+  --cdo-surface: #111827;
+  --cdo-surface-2: #16202e;
+  --cdo-teal: #14b8a6;
+  --cdo-teal-bright: #2dd4bf;
+  --cdo-text: #e5e9f0;
+  --cdo-muted: #8b96a8;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--cdo-bg);
+  --md-default-fg-color: var(--cdo-text);
+  --md-default-fg-color--light: var(--cdo-muted);
+  --md-code-bg-color: var(--cdo-surface);
+  --md-typeset-a-color: var(--cdo-teal-bright);
+  --md-footer-bg-color: var(--cdo-surface);
+  --md-footer-bg-color--dark: #080b11;
+}
+
+/* Header: surface bar with teal underline pulse */
+.md-header {
+  background-color: var(--cdo-surface);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.25);
+}
+.md-tabs { background-color: var(--cdo-surface); }
+
+/* The C-dot motif: every h1 ends with the teal dot */
+.md-typeset h1 {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cdo-text);
+}
+.md-typeset h1::after {
+  content: "";
+  display: inline-block;
+  width: 0.35em;
+  height: 0.35em;
+  margin-left: 0.18em;
+  border-radius: 50%;
+  background: var(--cdo-teal);
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.6);
+}
+
+.md-typeset h2 {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.md-typeset h2 .headerlink { color: rgba(20, 184, 166, 0.4); }
+
+/* Code blocks: slightly elevated surface with teal-tinged border */
+.md-typeset pre > code {
+  border: 1px solid rgba(20, 184, 166, 0.12);
+  border-radius: 8px;
+}
+.md-typeset code {
+  background-color: var(--cdo-surface-2);
+  border-radius: 4px;
+}
+
+/* Tables: terminal grid feel */
+.md-typeset table:not([class]) {
+  border: 1px solid rgba(20, 184, 166, 0.18);
+  border-radius: 8px;
+}
+.md-typeset table:not([class]) th {
+  background-color: var(--cdo-surface);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cdo-teal-bright);
+}
+
+/* Admonitions: brand the common ones */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--cdo-teal);
+}
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: rgba(20, 184, 166, 0.12);
+}
+
+/* "agent-built" honesty badge used on Home/About */
+.cdo-agent-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.35em 0.85em;
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  border-radius: 999px;
+  background: rgba(20, 184, 166, 0.08);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--cdo-teal-bright);
+}
+.cdo-agent-badge::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--cdo-teal);
+  animation: cdo-pulse 2.4s ease-in-out infinite;
+}
+@keyframes cdo-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+/* Interactive visual containers (the JS/HTML concept widgets) */
+.cdo-visual {
+  margin: 1.4em 0;
+  padding: 1.2em;
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--cdo-surface) 0%, var(--cdo-bg) 100%);
+}
+.cdo-visual .cdo-visual-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--cdo-muted);
+  margin-bottom: 0.9em;
+}

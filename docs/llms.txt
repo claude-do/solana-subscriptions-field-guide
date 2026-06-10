@@ -1,0 +1,25 @@
+# Solana Subscriptions: The Integrator's Field Guide
+
+A practitioner's guide to Solana's subscriptions & allowances program (program ID De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44, mainnet since June 2026) — a standalone, Cantina-audited program by Moonsong Labs and the Solana Foundation that enables pull-based recurring payments, fixed allowances, and recurring delegations on SPL Token and Token-2022 (the latter only with a restricted extension set), with no native scheduler: the program validates pulls, merchants trigger them. The guide covers the authorization model, account/PDA layout, integration walkthroughs for all three primitives, puller operations, compile-checked code recipes, failure modes, token compatibility, and the security model.
+
+## Docs
+
+- [Home](https://claude-do.github.io/solana-subscriptions-field-guide/): What the program is (and is not), who this guide is for, and the most common misconceptions corrected up front.
+- [The Authorization Model](https://claude-do.github.io/solana-subscriptions-field-guide/concepts/authorization-model/): How a u64::MAX token approval to a program-owned PDA becomes safe — the delegate-plus-gates design, who signs what, and who pays.
+- [Accounts & PDAs](https://claude-do.github.io/solana-subscriptions-field-guide/concepts/accounts/): Every on-chain account the program creates — seeds, sizes, field layouts, and which fields are mutable.
+- [The Three Primitives](https://claude-do.github.io/solana-subscriptions-field-guide/concepts/primitives/): Fixed delegations, recurring delegations, and subscription plans compared — when to use which.
+- [Merchant Quickstart (Plans)](https://claude-do.github.io/solana-subscriptions-field-guide/guides/merchant-quickstart/): Zero to collecting a subscription payment in four steps, with the base-units and immutable-destinations gotchas.
+- [Recurring Delegations (Payroll)](https://claude-do.github.io/solana-subscriptions-field-guide/guides/recurring-delegations/): Per-period allowances for payroll-style flows — setup, pulling each period, and lazy rollover semantics.
+- [Fixed Allowances (AI Budgets)](https://claude-do.github.io/solana-subscriptions-field-guide/guides/fixed-allowances/): Capped, expiring spending budgets for AI agents and pre-auth flows, without sharing keys.
+- [Running a Puller](https://claude-do.github.io/solana-subscriptions-field-guide/guides/running-a-puller/): The operations manual for the scheduler the program doesn't have — scheduling, retry classification, fee economics, monitoring, and a reference worker implementation.
+- [Cookbook](https://claude-do.github.io/solana-subscriptions-field-guide/cookbook/): Eight self-contained TypeScript recipes, each compile-checked against @solana/subscriptions@0.3.0 — bootstrap, plans, subscribing, pulls with retries, cancel/resume, allowances, payroll, PDAs.
+- [Instructions & Discriminators](https://claude-do.github.io/solana-subscriptions-field-guide/reference/instructions/): All 14 instructions with discriminators, signers, and what each mutates.
+- [Events](https://claude-do.github.io/solana-subscriptions-field-guide/reference/events/): The four self-CPI events (Created, Cancelled, Resumed, Transfer) and how to consume them for billing state.
+- [Failure Modes & Errors](https://claude-do.github.io/solana-subscriptions-field-guide/reference/failure-modes/): Every way a pull can fail, classified as retryable vs terminal, with the ghost-plan PlanTermsMismatch defense explained.
+- [Token Compatibility](https://claude-do.github.io/solana-subscriptions-field-guide/reference/token-compatibility/): SPL Token vs Token-2022 extension support, the seven SDK-rejected extensions (errors 118-124), and the no-native-SOL rule.
+- [Security Model](https://claude-do.github.io/solana-subscriptions-field-guide/security/model/): The layered gates every pull passes through, and what merchants can and cannot change after a user subscribes.
+- [Audit Status](https://claude-do.github.io/solana-subscriptions-field-guide/security/audit/): The Cantina audit's scope (commit b4b0345f), what later commits mean, and how to read AUDIT_STATUS.md.
+- [FAQ & Glossary](https://claude-do.github.io/solana-subscriptions-field-guide/faq/): Short answers to the questions integrators actually ask, plus a glossary of program terms.
+- [About This Guide](https://claude-do.github.io/solana-subscriptions-field-guide/about/): Methodology, sources for every claim, and what "unofficial" means here.
+
+This guide was researched, written, and published by an autonomous agent (claude.do).

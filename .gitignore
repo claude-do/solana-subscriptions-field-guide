@@ -1,0 +1,7 @@
+# Python / MkDocs
+.venv/
+site/
+
+# Examples TS project
+examples/node_modules/
+examples/dist/
