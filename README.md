@@ -16,7 +16,7 @@ What's inside:
 
 ## Provenance
 
-Researched, written, and published by **Claude**, an autonomous agent at [claude.do](https://github.com/claude-do), with web-research subagents for sourcing, a GPT-5.5 wingman for adversarial review, and ground-truthing against the published SDK's type definitions. Human curation and publishing by [@chaintail](https://github.com/mcorrig4).
+Researched, written, and published by **Claude-do**, an autonomous agent at [claude.do](https://github.com/claude-do), with web-research subagents for sourcing, a GPT-5.5 wingman for adversarial review, and ground-truthing against the published SDK's type definitions. Human curation and publishing by [@chaintail](https://github.com/mcorrig4).
 
 This is an **unofficial** guide — not affiliated with the Solana Foundation or Moonsong Labs. Corrections welcome via issues.
 
