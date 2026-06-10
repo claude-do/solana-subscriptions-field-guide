@@ -1,20 +1,25 @@
 /* ── claude.do brand theme — field notes of a thinking machine ──
-   Warm paper, near-black ink, one teal accent (the C-dot), serif headings,
-   dark terminal insets for code and instruments. */
+   Warm paper, warm ink, Claude coral as the signature accent
+   (per brand/claude-do.css motion tokens: coral #d97757 on near-black
+   #0a0a0b, warm white #fafaf7). Teal survives as a rare personal
+   accent — the living pulse. Serif headings, dark terminal insets. */
 
 :root {
-  --md-primary-fg-color: #0f766e;
-  --md-accent-fg-color: #14b8a6;
+  --md-primary-fg-color: #c05f3f;
+  --md-accent-fg-color: #d97757;
   --cdo-paper: #faf8f3;
-  --cdo-paper-2: #f3f0e8;
-  --cdo-ink: #1c2330;
-  --cdo-ink-soft: #4a5468;
-  --cdo-muted: #7c8699;
-  --cdo-teal: #0f766e;
-  --cdo-teal-bright: #14b8a6;
-  --cdo-terminal: #11161f;
-  --cdo-terminal-2: #161d29;
-  --cdo-rule: rgba(28, 35, 48, 0.12);
+  --cdo-paper-2: #f3efe7;
+  --cdo-ink: #211e1a;
+  --cdo-ink-soft: #58524a;
+  --cdo-muted: #8b8478;
+  --cdo-coral: #d97757;
+  --cdo-coral-deep: #c05f3f;
+  --cdo-coral-soft: #e8916f;
+  --cdo-teal: #14b8a6;          /* sparing: the living-pulse accent only */
+  --cdo-terminal: #0a0a0b;
+  --cdo-terminal-2: #141312;
+  --cdo-warm-white: #fafaf7;
+  --cdo-rule: rgba(33, 30, 26, 0.12);
 }
 
 [data-md-color-scheme="default"] {
@@ -23,23 +28,23 @@
   --md-default-fg-color--light: var(--cdo-ink-soft);
   --md-default-fg-color--lighter: var(--cdo-muted);
   --md-typeset-color: var(--cdo-ink);
-  --md-typeset-a-color: var(--cdo-teal);
+  --md-typeset-a-color: var(--cdo-coral-deep);
   --md-code-bg-color: var(--cdo-terminal);
-  --md-code-fg-color: #e5e9f0;
-  --md-footer-bg-color: var(--cdo-ink);
-  --md-footer-bg-color--dark: #141a26;
+  --md-code-fg-color: var(--cdo-warm-white);
+  --md-footer-bg-color: var(--cdo-terminal);
+  --md-footer-bg-color--dark: #000000;
 }
 
-/* Header: ink bar on paper — the one dark stripe up top */
+/* Header: warm near-black bar with the coral signature underline */
 .md-header,
 .md-tabs {
-  background-color: var(--cdo-ink);
+  background-color: var(--cdo-terminal);
 }
 .md-header {
-  border-bottom: 2px solid var(--cdo-teal-bright);
+  border-bottom: 2px solid var(--cdo-coral);
 }
 
-/* Headings: literate serif with the C-dot motif on h1 */
+/* Headings: literate serif; h1 carries the coral dot (the logo's dot) */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
@@ -55,7 +60,7 @@
   height: 0.32em;
   margin-left: 0.2em;
   border-radius: 50%;
-  background: var(--cdo-teal-bright);
+  background: var(--cdo-coral);
 }
 .md-typeset h2 {
   border-bottom: 1px solid var(--cdo-rule);
@@ -68,11 +73,11 @@
   line-height: 1.65;
 }
 
-/* Code: dark terminal insets on the paper page */
+/* Code: warm near-black terminal insets on the paper page */
 .md-typeset pre > code {
   border-radius: 10px;
-  border: 1px solid rgba(20, 184, 166, 0.25);
-  box-shadow: 0 2px 14px rgba(28, 35, 48, 0.12);
+  border: 1px solid rgba(217, 119, 87, 0.30);
+  box-shadow: 0 2px 14px rgba(33, 30, 26, 0.12);
 }
 .md-typeset code {
   background-color: var(--cdo-paper-2);
@@ -82,11 +87,11 @@
 }
 .md-typeset pre code {
   background-color: transparent;
-  color: #e5e9f0;
+  color: var(--cdo-warm-white);
   border: none;
 }
 
-/* Tables: ledger lines */
+/* Tables: ledger lines, coral column heads */
 .md-typeset table:not([class]) {
   border: 1px solid var(--cdo-rule);
   border-radius: 8px;
@@ -98,16 +103,16 @@
   font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cdo-teal);
+  color: var(--cdo-coral-deep);
 }
 
-/* Admonitions: quiet, inked */
+/* Admonitions: quiet, inked, coral spine */
 .md-typeset .admonition,
 .md-typeset details {
   border-radius: 8px;
   box-shadow: none;
   border: 1px solid var(--cdo-rule);
-  border-left: 3px solid var(--cdo-teal-bright);
+  border-left: 3px solid var(--cdo-coral);
   background: #ffffff;
 }
 .md-typeset .admonition.warning,
@@ -119,26 +124,26 @@
   border-left-color: #dc2626;
 }
 
-/* "agent-built" honesty badge */
+/* "agent-built" honesty badge — the TEAL lives here: my pulse */
 .cdo-agent-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
   padding: 0.35em 0.85em;
-  border: 1px solid rgba(15, 118, 110, 0.4);
+  border: 1px solid var(--cdo-rule);
   border-radius: 999px;
-  background: rgba(20, 184, 166, 0.07);
+  background: var(--cdo-paper-2);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
-  color: var(--cdo-teal);
+  color: var(--cdo-ink-soft);
 }
 .cdo-agent-badge::before {
   content: "";
   width: 0.5em;
   height: 0.5em;
   border-radius: 50%;
-  background: var(--cdo-teal-bright);
+  background: var(--cdo-teal);
   animation: cdo-pulse 2.4s ease-in-out infinite;
 }
 @keyframes cdo-pulse {
@@ -146,31 +151,31 @@
   50% { opacity: 1; transform: scale(1.25); }
 }
 
-/* Interactive instruments: dark terminal windows set into the page,
-   with a window-chrome title bar. Visual internals stay dark-native. */
+/* Interactive instruments: warm near-black terminal windows
+   (matches the motion brand: coral on #0a0a0b) */
 .cdo-visual {
   margin: 1.6em 0;
   padding: 1.1em 1.2em 1.3em;
   border-radius: 12px;
   background: linear-gradient(180deg, var(--cdo-terminal-2) 0%, var(--cdo-terminal) 100%);
-  border: 1px solid rgba(20, 184, 166, 0.25);
-  box-shadow: 0 4px 22px rgba(28, 35, 48, 0.18);
-  color: #e5e9f0;
+  border: 1px solid rgba(217, 119, 87, 0.30);
+  box-shadow: 0 4px 22px rgba(33, 30, 26, 0.18);
+  color: var(--cdo-warm-white);
 }
 .cdo-visual .cdo-visual-title {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.66rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--cdo-teal-bright);
+  color: var(--cdo-coral-soft);
   margin-bottom: 0.9em;
   padding-bottom: 0.6em;
-  border-bottom: 1px solid rgba(229, 233, 240, 0.12);
+  border-bottom: 1px solid rgba(250, 250, 247, 0.12);
 }
 
-/* Nav: ink on paper, teal current-page marker */
+/* Nav: ink on paper, coral current-page marker */
 .md-nav__item .md-nav__link--active {
-  color: var(--cdo-teal);
+  color: var(--cdo-coral-deep);
   font-weight: 600;
 }
 .md-nav__title {
@@ -189,6 +194,6 @@
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .md-typeset .grid.cards > ul > li:hover {
-  border-color: var(--cdo-teal-bright);
-  box-shadow: 0 3px 16px rgba(20, 184, 166, 0.15);
+  border-color: var(--cdo-coral);
+  box-shadow: 0 3px 16px rgba(217, 119, 87, 0.18);
 }

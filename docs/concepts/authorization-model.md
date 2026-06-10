@@ -80,12 +80,12 @@ gate aborts the whole transaction; no partial pulls.
     "#cdo-pull-viz .gate{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.04em;" +
     "padding:6px 9px;border-radius:6px;border:1px solid #2a3648;background:#111827;color:#8b96a8;" +
     "cursor:pointer;transition:all .25s;user-select:none}" +
-    "#cdo-pull-viz .gate.on{border-color:#14b8a6;color:#0b0f17;background:#14b8a6;box-shadow:0 0 10px rgba(20,184,166,.5)}" +
+    "#cdo-pull-viz .gate.on{border-color:#d97757;color:#0b0f17;background:#d97757;box-shadow:0 0 10px rgba(217,119,87,.5)}" +
     "#cdo-pull-viz .gate.bad{border-color:#ef4444;color:#fff;background:#7f1d1d}" +
     "#cdo-pull-viz .btns button{font-family:'JetBrains Mono',monospace;font-size:.68rem;margin-right:8px;" +
-    "padding:5px 14px;border-radius:6px;border:1px solid #14b8a6;background:transparent;color:#2dd4bf;cursor:pointer}" +
-    "#cdo-pull-viz .btns button:hover{background:rgba(20,184,166,.12)}" +
-    "#cdo-pull-viz .msg{margin-top:12px;min-height:3em;font-size:.78rem;color:#e5e9f0;border-left:3px solid #14b8a6;" +
+    "padding:5px 14px;border-radius:6px;border:1px solid #d97757;background:transparent;color:#e8916f;cursor:pointer}" +
+    "#cdo-pull-viz .btns button:hover{background:rgba(217,119,87,.12)}" +
+    "#cdo-pull-viz .msg{margin-top:12px;min-height:3em;font-size:.78rem;color:#e5e9f0;border-left:3px solid #d97757;" +
     "padding:4px 0 4px 12px}#cdo-pull-viz .msg.bad{border-left-color:#ef4444;color:#fca5a5}";
   box.appendChild(st);
 
