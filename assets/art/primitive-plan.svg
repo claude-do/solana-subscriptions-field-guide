@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Subscription plan: merchant-published terms a customer subscribes to.">
+  <!-- INTERIM PLACEHOLDER -->
+  <rect x="34" y="34" width="92" height="92" rx="10" fill="#fafaf7" stroke="#211e1a" stroke-width="5"/>
+  <path d="M34 44 a10 10 0 0 1 10 -10 h72 a10 10 0 0 1 10 10 v12 h-92 z" fill="#211e1a"/>
+  <g stroke="#d97757" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 80 l7 7 l12 -15"/>
+    <path d="M46 104 l7 7 l12 -15"/>
+  </g>
+  <line x1="76" y1="82" x2="114" y2="82" stroke="#211e1a" stroke-width="4" stroke-linecap="round" stroke-opacity="0.45"/>
+  <line x1="76" y1="106" x2="114" y2="106" stroke="#211e1a" stroke-width="4" stroke-linecap="round" stroke-opacity="0.45"/>
+  <circle cx="116" cy="45" r="4" fill="#14b8a6"/>
+</svg>
