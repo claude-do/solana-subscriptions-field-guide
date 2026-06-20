@@ -7,9 +7,57 @@
 
 ## Why this page exists
 
+![A puller — the off-chain crank that submits each transfer for the program to validate](../assets/art/puller.png){ width=300 align=right }
+
+
 There is **no native scheduler, crank, or keeper** in the program. On-chain you get validation only; the trigger is an off-chain transaction someone must submit, sign, and pay for. And the ecosystem hole is real: **Clockwork — the keeper network that would have been the obvious answer — is dead**, and as of this writing the gap is unfilled. No general-purpose decentralized cron has replaced it.
 
 So the honest integration picture is: *the subscriptions program solves authorization; execution is still your problem.* (Anyone telling you this program "replaces Clockwork" has it backwards — see [misconceptions](../index.md).)
+
+<div class="cdo-figure">
+<svg class="dgm" viewBox="0 0 900 420" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Lifecycle of one pull: the off-chain puller submits transferSubscription; the program validates the gate chain, rolls the period and updates counters, signs a token-program CPI as the SubscriptionAuthority PDA to move tokens to the plan destination, and emits a SubscriptionTransferEvent the puller can monitor.">
+<defs>
+  <marker id="cdoArr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#211e1a"/></marker>
+  <marker id="cdoArrC" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c05f3f"/></marker>
+  <style>
+    .dgm .b{fill:#fafaf7;stroke:#211e1a;stroke-width:2.5}
+    .dgm .hd{fill:#fff;stroke:#211e1a;stroke-width:2.5}
+    .dgm .t{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;fill:#211e1a}
+    .dgm .s{font-family:Inter,system-ui,sans-serif;font-size:11.5px;fill:#58524a}
+    .dgm .sm{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;fill:#58524a}
+    .dgm .lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;fill:#c05f3f;letter-spacing:.03em}
+    .dgm .life{stroke:#211e1a;stroke-opacity:.28;stroke-width:1.5;stroke-dasharray:2 7}
+    .dgm .ln{stroke:#211e1a;stroke-width:2;fill:none}
+    .dgm .lnc{stroke:#c05f3f;stroke-width:2;fill:none}
+  </style>
+</defs>
+  <line class="life" x1="130" y1="92" x2="130" y2="404"/>
+  <line class="life" x1="450" y1="92" x2="450" y2="404"/>
+  <line class="life" x1="770" y1="92" x2="770" y2="404"/>
+  <rect class="hd" x="55" y="44" width="150" height="46" rx="9"/>
+  <text x="130" y="65" text-anchor="middle" class="t">Puller</text>
+  <text x="130" y="82" text-anchor="middle" class="s">off-chain daemon</text>
+  <rect class="hd" x="355" y="44" width="190" height="46" rx="9"/>
+  <text x="450" y="71" text-anchor="middle" class="t">Subscriptions program</text>
+  <rect class="hd" x="680" y="44" width="180" height="46" rx="9"/>
+  <text x="770" y="71" text-anchor="middle" class="t">Token program</text>
+  <line class="ln" x1="132" y1="124" x2="448" y2="124" marker-end="url(#cdoArr)"/>
+  <text x="290" y="116" text-anchor="middle" class="lbl">transferSubscription() · pays the fee</text>
+  <rect class="b" x="300" y="146" width="300" height="42" rx="8"/>
+  <text x="450" y="164" text-anchor="middle" class="sm">validate the gate chain —</text>
+  <text x="450" y="180" text-anchor="middle" class="sm">cap · destination · expiry · terms · cancellation</text>
+  <rect class="b" x="330" y="200" width="240" height="34" rx="8"/>
+  <text x="450" y="221" text-anchor="middle" class="sm">roll period · update counters (atomic)</text>
+  <line class="lnc" x1="452" y1="264" x2="768" y2="264" marker-end="url(#cdoArrC)"/>
+  <text x="610" y="256" text-anchor="middle" class="lbl">transfer CPI — signed by the SA PDA</text>
+  <rect class="b" x="650" y="286" width="215" height="44" rx="8"/>
+  <text x="757" y="304" text-anchor="middle" class="sm">moves tokens →</text>
+  <text x="757" y="320" text-anchor="middle" class="sm">the plan's destination only</text>
+  <line class="lnc" x1="448" y1="362" x2="132" y2="362" marker-end="url(#cdoArrC)" stroke-dasharray="5 4"/>
+  <text x="290" y="354" text-anchor="middle" class="lbl">SubscriptionTransferEvent (self-CPI) → monitor</text>
+</svg>
+<p class="cdo-figcaption">The lifecycle of one pull. The program validates and signs; you supply the transaction. If any gate fails, the whole transaction reverts.</p>
+</div>
 
 ## Who can pull, and the whitelist mechanics
 

@@ -2,6 +2,37 @@
 
 **BLUF:** Over-pulling isn't prevented by one check but by a **layered gate chain** evaluated on every transfer: ownership, mint, expiry, caller, destination, terms-fingerprint, cancellation, and cap — and only then does the program's PDA sign the token move. The trust statement is precise: users trust the *program's code* (and [its audit](audit.md)) to gate a `u64::MAX` token approval; merchants get exactly the powers a subscriber granted at subscribe time, and not one more.
 
+<div class="cdo-figure">
+<svg class="dgm" viewBox="0 0 900 320" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Cap enforcement: with $30 already pulled against a $50 per-period cap, a $35 pull exceeds the $20 remaining, so the program returns AmountExceedsLimit (300) and the whole transaction reverts.">
+<defs>
+  <marker id="cdoArrC" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c05f3f"/></marker>
+  <style>
+    .dgm .b{fill:#fafaf7;stroke:#211e1a;stroke-width:2.5}
+    .dgm .bad{fill:#fff;stroke:#ef4444;stroke-width:2.5}
+    .dgm .s{font-family:Inter,system-ui,sans-serif;font-size:12.5px;fill:#58524a}
+    .dgm .t{font-family:Inter,system-ui,sans-serif;font-size:15px;font-weight:600;fill:#b91c1c}
+    .dgm .lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#c05f3f;letter-spacing:.03em}
+    .dgm .lnc{stroke:#c05f3f;stroke-width:2;fill:none}
+  </style>
+</defs>
+  <text x="560" y="30" text-anchor="middle" class="lbl">puller submits $35</text>
+  <line class="lnc" x1="560" y1="38" x2="560" y2="62" marker-end="url(#cdoArrC)"/>
+  <rect x="430" y="66" width="240" height="20" rx="4" fill="none" stroke="#d97757" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="670" y="66" width="180" height="20" rx="4" fill="rgba(239,68,68,0.10)" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="760" y="80" text-anchor="middle" class="s" fill="#b91c1c" font-size="11">over the cap</text>
+  <rect class="b" x="70" y="94" width="600" height="54" rx="8"/>
+  <rect x="72" y="96" width="358" height="50" rx="6" fill="#d97757"/>
+  <line x1="670" y1="60" x2="670" y2="172" stroke="#ef4444" stroke-width="3"/>
+  <text x="684" y="126" class="s" fill="#b91c1c">← cap = $50 / period</text>
+  <text x="251" y="126" text-anchor="middle" class="s" fill="#fafaf7" font-weight="600">$30 pulled</text>
+  <text x="550" y="126" text-anchor="middle" class="s">$20 remaining</text>
+  <rect class="bad" x="210" y="210" width="480" height="74" rx="10"/>
+  <text x="450" y="240" text-anchor="middle" class="t">AmountExceedsLimit (300) — the transaction reverts</text>
+  <text x="450" y="263" text-anchor="middle" class="s" fill="#b91c1c">no partial pulls · even a whitelisted puller cannot exceed it</text>
+</svg>
+<p class="cdo-figcaption">The cap is enforced on-chain at transfer time. A pull that would exceed the period's remaining amount reverts entirely — it is not clamped to the remainder.</p>
+</div>
+
 ## What actually stops over-pulling
 
 The naive fear: "the program's PDA holds an unlimited approval on my token account — what stops a merchant from draining it?" The answer is the full check chain, every gate of which must pass **in the same transaction** before the PDA's signature is produced:

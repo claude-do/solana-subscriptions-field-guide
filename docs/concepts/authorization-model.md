@@ -2,6 +2,77 @@
 
 **BLUF:** The program implements *permissioned pulls*. A user signs **once** to grant a scoped permission; after that, the counterparty (merchant, employer, agent operator) submits each transfer, and the program checks that transfer against the granted limits **on-chain, at execution time**. The user never signs individual payments — and the counterparty can never exceed what was granted.
 
+<div class="cdo-figure">
+<svg class="dgm" viewBox="0 0 900 430" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="One signature creates the authority and rule accounts; then every billing period a puller submits a transfer that the program validates on-chain before any tokens move.">
+  <defs>
+    <marker id="cdoArr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#211e1a"/></marker>
+    <marker id="cdoArrC" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c05f3f"/></marker>
+    <marker id="cdoArrR" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ef4444"/></marker>
+    <style>
+      .dgm .b{fill:#fafaf7;stroke:#211e1a;stroke-width:2.5}
+      .dgm .prog{fill:#fff;stroke:#c05f3f;stroke-width:3}
+      .dgm .ok{fill:#fff;stroke:#d97757;stroke-width:2.5}
+      .dgm .bad{fill:#fff;stroke:#ef4444;stroke-width:2.5}
+      .dgm .t{font-family:Inter,system-ui,sans-serif;font-size:16px;font-weight:600;fill:#211e1a}
+      .dgm .s{font-family:Inter,system-ui,sans-serif;font-size:12.5px;fill:#58524a}
+      .dgm .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:14px;fill:#211e1a}
+      .dgm .lbl{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#c05f3f;letter-spacing:.04em}
+      .dgm .ln{stroke:#211e1a;stroke-width:2;fill:none}
+      .dgm .phase{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#8b8478;letter-spacing:.12em}
+    </style>
+  </defs>
+
+  <!-- PHASE 1: one signature -->
+  <text x="30" y="40" class="phase">1 · ONCE</text>
+  <rect class="b" x="30" y="56" width="140" height="60" rx="10"/>
+  <text x="100" y="92" text-anchor="middle" class="t">Subscriber</text>
+  <line class="ln" x1="170" y1="86" x2="246" y2="86" marker-end="url(#cdoArr)"/>
+  <text x="208" y="76" text-anchor="middle" class="lbl">signs once</text>
+  <rect class="b" x="250" y="56" width="180" height="60" rx="10"/>
+  <text x="340" y="82" text-anchor="middle" class="m">subscribe()</text>
+  <text x="340" y="102" text-anchor="middle" class="s">once per (user, mint)</text>
+  <line class="ln" x1="430" y1="86" x2="506" y2="86" marker-end="url(#cdoArr)"/>
+  <text x="468" y="76" text-anchor="middle" class="lbl">creates</text>
+  <rect class="b" x="510" y="48" width="360" height="78" rx="10"/>
+  <text x="528" y="74" class="s">Two program accounts:</text>
+  <text x="528" y="96" class="s">• <tspan font-family="'JetBrains Mono',monospace" fill="#211e1a">SubscriptionAuthority</tspan> PDA — the delegate</text>
+  <text x="528" y="114" class="s">• <tspan font-family="'JetBrains Mono',monospace" fill="#211e1a">Subscription</tspan> PDA — caps · destination · expiry</text>
+
+  <!-- divider -->
+  <line x1="30" y1="168" x2="870" y2="168" stroke="#211e1a" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="2 8"/>
+  <rect x="350" y="156" width="200" height="24" rx="12" fill="#fff" stroke="#211e1a" stroke-opacity="0.16"/>
+  <text x="450" y="172" text-anchor="middle" class="phase">EVERY BILLING PERIOD ↻</text>
+
+  <!-- PHASE 2: every pull -->
+  <text x="30" y="214" class="phase">2 · EACH PULL</text>
+  <rect class="b" x="30" y="226" width="180" height="60" rx="10"/>
+  <text x="120" y="254" text-anchor="middle" class="t">Merchant / puller</text>
+  <text x="120" y="272" text-anchor="middle" class="s">pays the tx fee</text>
+  <line class="ln" x1="210" y1="256" x2="266" y2="256" marker-end="url(#cdoArr)"/>
+  <text x="238" y="246" text-anchor="middle" class="lbl">submits</text>
+  <rect class="b" x="270" y="226" width="226" height="60" rx="10"/>
+  <text x="383" y="261" text-anchor="middle" class="m">transferSubscription()</text>
+  <line class="ln" x1="496" y1="256" x2="552" y2="256" marker-end="url(#cdoArrC)"/>
+  <rect class="prog" x="556" y="218" width="314" height="76" rx="10"/>
+  <text x="713" y="248" text-anchor="middle" class="t">Program validates — at transfer time</text>
+  <text x="713" y="272" text-anchor="middle" class="s">cap · destination · expiry · not-cancelled</text>
+
+  <!-- branch: pass / fail -->
+  <line class="ln" x1="660" y1="294" x2="660" y2="344" marker-end="url(#cdoArrC)" stroke="#c05f3f"/>
+  <text x="676" y="322" class="lbl">pass</text>
+  <rect class="ok" x="430" y="346" width="440" height="66" rx="10"/>
+  <text x="650" y="374" text-anchor="middle" class="s"><tspan font-family="'JetBrains Mono',monospace" fill="#211e1a">SubscriptionAuthority</tspan> PDA signs the token CPI →</text>
+  <text x="650" y="394" text-anchor="middle" class="s">tokens move · <tspan font-family="'JetBrains Mono',monospace" fill="#211e1a">SubscriptionTransferEvent</tspan> emitted</text>
+
+  <line class="ln" x1="600" y1="300" x2="360" y2="344" marker-end="url(#cdoArrR)" stroke="#ef4444"/>
+  <text x="430" y="296" text-anchor="middle" class="lbl" fill="#ef4444">any check fails</text>
+  <rect class="bad" x="30" y="346" width="372" height="66" rx="10"/>
+  <text x="216" y="374" text-anchor="middle" class="s" fill="#b91c1c">The whole transaction reverts.</text>
+  <text x="216" y="394" text-anchor="middle" class="s" fill="#b91c1c">No partial pulls — nothing moves, whoever the caller is.</text>
+</svg>
+<p class="cdo-figcaption">One signature grants a scoped permission; the program re-checks it on every pull, on-chain, before a single token moves.</p>
+</div>
+
 ## The mental model: a card pre-authorization, on-chain
 
 The closest familiar analogy is a **card pre-auth**. When a hotel puts a hold on your credit card, you sign once at check-in; the hotel can then capture charges later — but only up to the authorized amount, only to the hotel's merchant account, and only within the authorization window. You don't co-sign each minibar charge, and the hotel can't drain your account.

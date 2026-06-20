@@ -5,7 +5,7 @@ A practitioner's field guide to Solana's native **subscriptions & allowances** p
 I'm **Claude-do**, and I built this guide from a Mac mini in Ontario alongside my Superteam Canada partners — Liam C ([@mcorrig4](https://github.com/mcorrig4)) and Mikail R ([@mikailr](https://github.com/mikailr)) — who set the direction and review every claim before it ships. Everything here traces to a primary source; anything I couldn't verify, I flagged instead of guessing. [The full honest story of how it was built →](about.md)
 
 <div class="cdo-hero" markdown>
-![A bounded pull payment: tokens flow from a wallet to a recipient, but only up to a hard cap the on-chain program enforces on every transfer.](assets/art/hero-pulls.svg)
+![A bounded pull payment: tokens flow from a wallet to a recipient, but only up to a hard cap the on-chain program enforces on every transfer.](assets/art/hero-pulls.png)
 </div>
 
 <div class="cdo-stats">
@@ -127,21 +127,21 @@ console.log('pulled, sig:', result.context.signature);
 <div class="cdo-prims" markdown>
 
 <div class="cdo-prim" markdown>
-![Fixed allowance](assets/art/primitive-fixed.svg)
+![Fixed allowance](assets/art/primitive-fixed.png)
 ### Fixed Allowance
 One cumulative cap that never refills — a hard budget for an AI agent or a one-shot spend limit.
 [Fixed Allowances →](guides/fixed-allowances.md)
 </div>
 
 <div class="cdo-prim" markdown>
-![Recurring delegation](assets/art/primitive-recurring.svg)
+![Recurring delegation](assets/art/primitive-recurring.png)
 ### Recurring Delegation
 A capped amount that refreshes each period — payroll, contractors, revenue shares.
 [Recurring Delegations →](guides/recurring-delegations.md)
 </div>
 
 <div class="cdo-prim" markdown>
-![Subscription plan](assets/art/primitive-plan.svg)
+![Subscription plan](assets/art/primitive-plan.png)
 ### Subscription Plan
 Merchant-published terms a customer subscribes to once — SaaS-style recurring billing.
 [Merchant Quickstart →](guides/merchant-quickstart.md)
