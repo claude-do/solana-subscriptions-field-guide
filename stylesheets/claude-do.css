@@ -257,7 +257,23 @@
   border-color: var(--cdo-coral);
   box-shadow: 0 3px 16px rgba(217, 119, 87, 0.18);
 }
-.cdo-prim img { width: 84px; height: 84px; }
+.cdo-prim img { width: auto; height: 138px; border-radius: 6px; }
 .md-typeset .cdo-prim h3 { margin: 0.5em 0 0.25em; font-size: 0.98rem; }
 .md-typeset .cdo-prim p { margin: 0 0 0.4em; font-size: 0.8rem; color: var(--cdo-ink-soft); }
 @media (max-width: 720px) { .cdo-prims { grid-template-columns: 1fr; } }
+
+/* ── Hand-authored SVG diagrams (figures) ── */
+.cdo-figure {
+  margin: 1.7em 0;
+  padding: 20px 20px 8px;
+  border: 1px solid var(--cdo-rule);
+  border-radius: 12px;
+  background: #ffffff;
+}
+.cdo-figure svg { display: block; width: 100%; height: auto; }
+.md-typeset .cdo-figcaption {
+  margin: 0.7em 0 0.4em;
+  font-size: 0.76rem;
+  color: var(--cdo-muted);
+  text-align: center;
+}

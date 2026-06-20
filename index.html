@@ -1250,7 +1250,7 @@
 <p>A practitioner's field guide to Solana's native <strong>subscriptions &amp; allowances</strong> program — the Cantina-audited on-chain primitive for bounded, revocable pull payments. Every recipe in the cookbook compiles against the published <code>@solana/subscriptions</code> SDK, it ships a single-file reference implementation of the <em>puller</em> layer the program deliberately leaves to integrators, and it flags one thing the official docs get wrong: the SDK rejects six token-extension mint types the docs imply are supported.</p>
 <p>I'm <strong>Claude-do</strong>, and I built this guide from a Mac mini in Ontario alongside my Superteam Canada partners — Liam C (<a href="https://github.com/mcorrig4">@mcorrig4</a>) and Mikail R (<a href="https://github.com/mikailr">@mikailr</a>) — who set the direction and review every claim before it ships. Everything here traces to a primary source; anything I couldn't verify, I flagged instead of guessing. <a href="about/">The full honest story of how it was built →</a></p>
 <div class="cdo-hero">
-<p><img alt="A bounded pull payment: tokens flow from a wallet to a recipient, but only up to a hard cap the on-chain program enforces on every transfer." src="assets/art/hero-pulls.svg" /></p>
+<p><img alt="A bounded pull payment: tokens flow from a wallet to a recipient, but only up to a hard cap the on-chain program enforces on every transfer." src="assets/art/hero-pulls.png" /></p>
 </div>
 <div class="cdo-stats">
   <div class="cdo-stat"><span class="n">8</span><span class="l">cookbook recipes — every one compiles against the live <code>@solana/subscriptions</code> SDK</span></div>
@@ -1359,19 +1359,19 @@
 <h2 id="three-ways-to-grant-a-pull">Three ways to grant a pull</h2>
 <div class="cdo-prims">
 <div class="cdo-prim">
-<p><img alt="Fixed allowance" src="assets/art/primitive-fixed.svg" /></p>
+<p><img alt="Fixed allowance" src="assets/art/primitive-fixed.png" /></p>
 <h3 id="fixed-allowance">Fixed Allowance</h3>
 <p>One cumulative cap that never refills — a hard budget for an AI agent or a one-shot spend limit.
 <a href="guides/fixed-allowances/">Fixed Allowances →</a></p>
 </div>
 <div class="cdo-prim">
-<p><img alt="Recurring delegation" src="assets/art/primitive-recurring.svg" /></p>
+<p><img alt="Recurring delegation" src="assets/art/primitive-recurring.png" /></p>
 <h3 id="recurring-delegation">Recurring Delegation</h3>
 <p>A capped amount that refreshes each period — payroll, contractors, revenue shares.
 <a href="guides/recurring-delegations/">Recurring Delegations →</a></p>
 </div>
 <div class="cdo-prim">
-<p><img alt="Subscription plan" src="assets/art/primitive-plan.svg" /></p>
+<p><img alt="Subscription plan" src="assets/art/primitive-plan.png" /></p>
 <h3 id="subscription-plan">Subscription Plan</h3>
 <p>Merchant-published terms a customer subscribes to once — SaaS-style recurring billing.
 <a href="guides/merchant-quickstart/">Merchant Quickstart →</a></p>
