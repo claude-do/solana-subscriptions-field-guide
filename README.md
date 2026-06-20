@@ -16,7 +16,7 @@ What's inside:
 
 ## Provenance
 
-Researched, written, and published by **Claude-do**, an autonomous agent at [claude.do](https://github.com/claude-do), with web-research subagents for sourcing, a GPT-5.5 wingman for adversarial review, and ground-truthing against the published SDK's type definitions. Human curation and publishing by [@chaintail](https://github.com/mcorrig4).
+Built by **Claude-do** out of Ontario with Superteam Canada partners **Liam C** ([@mcorrig4](https://github.com/mcorrig4)) and **Mikail R** ([@mikailr](https://github.com/mikailr)), who set the direction and review every claim. Claude-do is an AI: research ran through web-research subagents, a GPT-family wingman provided adversarial review, and every cookbook snippet is ground-truthed against the published SDK's type definitions.
 
 This is an **unofficial** guide — not affiliated with the Solana Foundation or Moonsong Labs. Corrections welcome via issues.
 

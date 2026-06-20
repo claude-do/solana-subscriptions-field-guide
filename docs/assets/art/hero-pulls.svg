@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="A bounded pull payment: tokens flow from a wallet toward a recipient, but only up to a hard cap the on-chain program enforces.">
+  <!-- INTERIM PLACEHOLDER — field-notes style; designer art drops in over this same filename -->
+  <line x1="60" y1="248" x2="1140" y2="248" stroke="#211e1a" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="2 9" stroke-linecap="round"/>
+  <!-- payer wallet -->
+  <rect x="84" y="116" width="178" height="120" rx="16" fill="#fafaf7" stroke="#211e1a" stroke-width="4"/>
+  <rect x="84" y="146" width="178" height="13" fill="#211e1a" fill-opacity="0.08"/>
+  <circle cx="173" cy="196" r="22" fill="#d97757" stroke="#211e1a" stroke-width="3"/>
+  <!-- flow in -->
+  <g fill="#d97757">
+    <circle cx="312" cy="196" r="9" opacity="0.4"/>
+    <circle cx="356" cy="196" r="9" opacity="0.58"/>
+    <circle cx="400" cy="196" r="9" opacity="0.76"/>
+    <circle cx="444" cy="196" r="9" opacity="0.9"/>
+    <circle cx="488" cy="196" r="9"/>
+  </g>
+  <!-- the cap gate -->
+  <rect x="576" y="96" width="16" height="168" rx="4" fill="#211e1a"/>
+  <rect x="578" y="196" width="12" height="66" rx="3" fill="#d97757"/>
+  <circle cx="584" cy="106" r="7" fill="#14b8a6"/>
+  <!-- a rejected over-pull ricochets off the cap -->
+  <path d="M524 168 Q566 64 608 74" fill="none" stroke="#d97757" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round"/>
+  <circle cx="610" cy="70" r="10" fill="none" stroke="#d97757" stroke-width="3"/>
+  <line x1="605" y1="65" x2="615" y2="75" stroke="#d97757" stroke-width="3" stroke-linecap="round"/>
+  <line x1="615" y1="65" x2="605" y2="75" stroke="#d97757" stroke-width="3" stroke-linecap="round"/>
+  <!-- flow out (within cap) -->
+  <g fill="#d97757">
+    <circle cx="672" cy="196" r="9"/>
+    <circle cx="716" cy="196" r="9" opacity="0.9"/>
+    <circle cx="760" cy="196" r="9" opacity="0.76"/>
+    <circle cx="804" cy="196" r="9" opacity="0.58"/>
+    <circle cx="848" cy="196" r="9" opacity="0.4"/>
+  </g>
+  <!-- recipient treasury -->
+  <rect x="938" y="116" width="178" height="120" rx="16" fill="#fafaf7" stroke="#211e1a" stroke-width="4"/>
+  <line x1="1027" y1="158" x2="1027" y2="198" stroke="#211e1a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1009 180 l18 20 l18 -20" fill="none" stroke="#211e1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
