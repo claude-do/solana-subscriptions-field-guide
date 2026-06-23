@@ -154,7 +154,11 @@ function amountDue(sub: SubscriptionDelegation, nowTs: bigint): bigint {
         return sub.terms.amount;
     }
     // Same period: claim whatever the cap still allows (0 if already pulled).
-    return sub.terms.amount - sub.amountPulledInPeriod;
+    // Clamp to non-negative — decoded state should never exceed the cap, but
+    // billing code must never emit a negative "due" amount if it somehow does.
+    return sub.amountPulledInPeriod >= sub.terms.amount
+        ? 0n
+        : sub.terms.amount - sub.amountPulledInPeriod;
 }
 
 // ------------------------------------------------------------------- client
@@ -210,7 +214,11 @@ async function pullOne(subscriptionPda: Address, subscriber: Address, amount: bi
                     subscriptionPda,
                     receiverAta: RECEIVER_ATA,
                     tokenMint: MINT,
-                    tokenProgram: TOKEN_PROGRAM_ADDRESS, // use TOKEN_2022 address for T22 mints
+                    // This reference assumes a plain SPL-Token mint (USDC and most
+                    // stablecoins). If your plan's mint is a Token-2022 mint, swap in
+                    // TOKEN_2022_PROGRAM_ADDRESS — and note the program rejects mints
+                    // using several Token-2022 extensions (see the token-compat table).
+                    tokenProgram: TOKEN_PROGRAM_ADDRESS,
                 })
                 .sendTransaction();
             const signature = result.context.signature;
@@ -220,6 +228,11 @@ async function pullOne(subscriptionPda: Address, subscriber: Address, amount: bi
         } catch (error) {
             const verdict = classify(error);
             if (verdict.kind === 'retryable') {
+                // A "retryable" failure means we never saw a program rejection — but a
+                // send can time out *after* the transaction actually landed. Your money
+                // is safe (the on-chain per-period cap rejects the duplicate as
+                // not-due), but for clean reconciliation a production puller should
+                // confirm the signature's status before recording a final outcome.
                 log('warn', 'pull-retryable', { subscriber, attempt, reason: verdict.reason });
                 if (attempt < MAX_ATTEMPTS) {
                     await sleep(1_000 * 2 ** (attempt - 1)); // exponential backoff

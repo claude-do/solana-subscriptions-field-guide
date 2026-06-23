@@ -33,8 +33,14 @@ const resumeResult = await client.subscriptions.instructions
     .sendTransaction();
 console.log('resumed, sig:', resumeResult.context.signature);
 
-// To leave permanently and reclaim the rent instead, revoke the
-// subscription PDA after cancelling:
+// To leave permanently and reclaim the rent instead, revoke the subscription
+// PDA after cancelling. Unlike cancel/resume, revokeSubscription needs the PDA
+// explicitly — derive it from (plan, subscriber) with findSubscriptionDelegationPda:
+//   import { findSubscriptionDelegationPda } from '@solana/subscriptions';
+//   const [subscriptionPda] = await findSubscriptionDelegationPda({
+//       planPda: PLAN_PDA,
+//       subscriber: client.identity.address,
+//   });
 //   await client.subscriptions.instructions
 //       .revokeSubscription({ planPda: PLAN_PDA, subscriptionPda })
 //       .sendTransaction();
