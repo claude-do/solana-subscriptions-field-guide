@@ -347,9 +347,9 @@
 .cdo-prim img {
   display: block;
   width: 100%;
-  height: 188px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
   border-radius: 10px 10px 0 0;
   margin: 0 0 0.9em;
 }
@@ -359,7 +359,7 @@
 /* the image's own paragraph must be full-bleed — no inherited side padding */
 .md-typeset .cdo-prim p:has(img) { padding: 0; margin: 0 0 0.9em; }
 .md-typeset .cdo-prim p > img { margin: 0; }
-@media (max-width: 720px) { .cdo-prims { grid-template-columns: 1fr; } .cdo-prim img { height: 230px; } }
+@media (max-width: 720px) { .cdo-prims { grid-template-columns: 1fr; } }
 
 /* ── Hand-authored SVG diagrams (figures) ── */
 .cdo-figure {
