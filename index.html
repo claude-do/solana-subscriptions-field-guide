@@ -1265,11 +1265,11 @@
 <h2 id="what-this-program-is-in-three-sentences">What this program is, in three sentences</h2>
 <p><strong>Solana Subscriptions</strong> is a standalone, Cantina-audited on-chain program — program ID <code>De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44</code> — built by Moonsong Labs with the Solana Foundation and live on mainnet since roughly <strong>June 3, 2026</strong>. It lets a user grant a <em>bounded, revocable</em> permission for someone else to pull tokens from their wallet — fixed allowances, recurring delegations, or merchant subscription plans — without the user signing each payment. The program enforces every limit on-chain at transfer time, but it never <em>initiates</em> anything: somebody (you, the integrator) has to run the infrastructure that actually triggers each pull.</p>
 <h2 id="see-the-cap-enforced-on-every-pull">See the cap enforced — on every pull</h2>
-<p>The program never trusts the puller. It re-checks the per-period cap <em>on-chain, at transfer time</em>, and reverts anything over the line — returning <code>AmountExceedsLimit (300)</code> no matter who submitted it. Drag a pull amount and submit one:</p>
+<p>The program never trusts the puller. It re-checks the per-period cap <em>on-chain, at transfer time</em>, and reverts anything over the line — returning <code>AmountExceedsPeriodLimit (400)</code> no matter who submitted it. Drag a pull amount and submit one:</p>
 <div class="cdo-visual">
 <div class="cdo-visual-title">interactive — submit a pull against a $50/period cap</div>
 <div id="cdo-cap-sim">
-<p id="cdo-cap-fallback"><strong>Enable JavaScript for the interactive simulator.</strong> The idea: a recurring delegation carries a hard per-period cap (here, $50). A puller may submit any amount it likes — but the program rejects, on-chain, anything that would exceed the cap remaining this period, returning <code>AmountExceedsLimit (300)</code>. No off-chain trust required.</p>
+<p id="cdo-cap-fallback"><strong>Enable JavaScript for the interactive simulator.</strong> The idea: a recurring delegation carries a hard per-period cap (here, $50). A puller may submit any amount it likes — but the program rejects, on-chain, anything that would exceed the cap remaining this period, returning <code>AmountExceedsPeriodLimit (400)</code>. No off-chain trust required.</p>
 </div>
 <script>
 (function () {
@@ -1325,7 +1325,7 @@
       msg.textContent = "✓ transferRecurring pulled $" + a + ". $" + (CAP - pulled) + " of $" + CAP + " left this period.";
     } else {
       msg.className = "msg bad";
-      msg.textContent = "✗ AmountExceedsLimit (300): a $" + a + " pull exceeds the $" + left + " left this period. The program reverts on-chain — nothing moves, whoever the caller is.";
+      msg.textContent = "✗ AmountExceedsPeriodLimit (400): a $" + a + " pull exceeds the $" + left + " left this period. The program reverts on-chain — nothing moves, whoever the caller is.";
     }
   };
   rst.onclick = function () {

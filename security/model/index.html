@@ -1187,7 +1187,7 @@
 <h1 id="security-model">Security Model</h1>
 <p><strong>BLUF:</strong> Over-pulling isn't prevented by one check but by a <strong>layered gate chain</strong> evaluated on every transfer: ownership, mint, expiry, caller, destination, terms-fingerprint, cancellation, and cap — and only then does the program's PDA sign the token move. The trust statement is precise: users trust the <em>program's code</em> (and <a href="../audit/">its audit</a>) to gate a <code>u64::MAX</code> token approval; merchants get exactly the powers a subscriber granted at subscribe time, and not one more.</p>
 <div class="cdo-figure">
-<svg class="dgm" viewBox="0 0 900 320" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Cap enforcement: with $30 already pulled against a $50 per-period cap, a $35 pull exceeds the $20 remaining, so the program returns AmountExceedsLimit (300) and the whole transaction reverts.">
+<svg class="dgm" viewBox="0 0 900 320" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="Cap enforcement: with $30 already pulled against a $50 per-period cap, a $35 pull exceeds the $20 remaining, so the program returns AmountExceedsPeriodLimit (400) and the whole transaction reverts.">
 <defs>
   <marker id="cdoArrC" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c05f3f"/></marker>
   <style>
@@ -1211,7 +1211,7 @@
   <text x="251" y="126" text-anchor="middle" class="s" fill="#fafaf7" font-weight="600">$30 pulled</text>
   <text x="550" y="126" text-anchor="middle" class="s">$20 remaining</text>
   <rect class="bad" x="210" y="210" width="480" height="74" rx="10"/>
-  <text x="450" y="240" text-anchor="middle" class="t">AmountExceedsLimit (300) — the transaction reverts</text>
+  <text x="450" y="240" text-anchor="middle" class="t">AmountExceedsPeriodLimit (400) — the transaction reverts</text>
   <text x="450" y="263" text-anchor="middle" class="s" fill="#b91c1c">no partial pulls · even a whitelisted puller cannot exceed it</text>
 </svg>
 <p class="cdo-figcaption">The cap is enforced on-chain at transfer time. A pull that would exceed the period's remaining amount reverts entirely — it is not clamped to the remainder.</p>
