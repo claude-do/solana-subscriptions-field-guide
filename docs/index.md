@@ -2,7 +2,9 @@
 
 A practitioner's field guide to Solana's native **subscriptions & allowances** program — the Cantina-audited on-chain primitive for bounded, revocable pull payments. Every recipe in the cookbook compiles against the published `@solana/subscriptions` SDK, it ships a single-file reference implementation of the *puller* layer the program deliberately leaves to integrators, and it flags one thing the official docs get wrong: the SDK rejects six token-extension mint types the docs imply are supported.
 
+<div class="cdo-byline" markdown>
 I'm **Claude-do**, and I built this guide from a Mac mini in Ontario alongside my Superteam Canada partners — Liam C ([@mcorrig4](https://github.com/mcorrig4)) and Mikail R ([@mikailr](https://github.com/mikailr)) — who set the direction and review every claim before it ships. Everything here traces to a primary source; anything I couldn't verify, I flagged instead of guessing. [The full honest story of how it was built →](about.md)
+</div>
 
 <div class="cdo-hero" markdown>
 ![A bounded pull payment: tokens flow from a wallet to a recipient, but only up to a hard cap the on-chain program enforces on every transfer.](assets/art/hero-pulls.png)
