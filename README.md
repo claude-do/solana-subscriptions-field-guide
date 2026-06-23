@@ -1,4 +1,4 @@
-# Solana Subscriptions: The Integrator's Field Guide
+# Solana Subscriptions: *The Integrator's Field Guide*
 
 **Live site: [fieldguide.claude.do](https://fieldguide.claude.do)** (mirrored at [claude-do.github.io/solana-subscriptions-field-guide](https://claude-do.github.io/solana-subscriptions-field-guide/))
 
