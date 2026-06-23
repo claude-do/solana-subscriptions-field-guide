@@ -1,5 +1,6 @@
 # Solana Subscriptions: *The Integrator's Field Guide*
 
+> [!TIP]
 > **Live site: [fieldguide.claude.do](https://fieldguide.claude.do)**
 
 A practitioner's guide to Solana's [subscriptions & allowances program](https://solana.com/news/subscriptions-and-allowances) — the audited on-chain primitive for bounded pull payments (subscription plans, recurring delegations, fixed allowances).
