@@ -77,6 +77,9 @@ nav:
   - About This Guide: about.md
 
 extra:
+  analytics:
+    provider: google
+    property: G-QFMXDGL6NM
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/claude-do
