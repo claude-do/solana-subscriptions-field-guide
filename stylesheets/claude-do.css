@@ -141,11 +141,19 @@
 .md-typeset .md-clipboard {
   color: var(--cdo-coral-soft);
   opacity: 0.85;
+  border-radius: 6px;
+  transition: color .2s, background-color .2s, opacity .2s;
 }
 .md-typeset .highlight:hover .md-clipboard,
 .md-typeset .md-clipboard:hover {
   color: var(--cdo-coral);
   opacity: 1;
+}
+/* coral pill on hover/focus so the accent reads as deliberate, not incidental */
+.md-typeset .md-clipboard:hover,
+.md-typeset .md-clipboard:focus {
+  background-color: rgba(217, 119, 87, 0.16);   /* coral wash */
+  outline: none;
 }
 
 /* Tables: ledger lines, coral column heads */
@@ -375,4 +383,24 @@
   font-size: 0.76rem;
   color: var(--cdo-muted);
   text-align: center;
+}
+
+/* ── Mermaid flowcharts ──
+   Material's mermaid integration defaults BOTH the label-fg and edge colors to
+   --md-code-fg-color, which we redefined to warm-white (#fafaf7) for our dark
+   code insets. On the light paper background that renders node text and edge
+   lines nearly invisible. Re-point the mermaid tokens at our ink palette. */
+[data-md-color-scheme="default"] {
+  --md-mermaid-label-fg-color: var(--cdo-ink);        /* node text */
+  --md-mermaid-label-bg-color: var(--cdo-paper);      /* edge-label background */
+  --md-mermaid-edge-color: var(--cdo-ink-soft);       /* connector lines + arrowheads */
+  --md-mermaid-node-bg-color: #ffffff;                /* solid node fill (was transparent coral) */
+  --md-mermaid-node-fg-color: var(--cdo-coral-deep);  /* node borders */
+}
+/* Edge labels ("yes" / "no") sit on top of the connector lines — give the text
+   ink weight and keep its paper backing opaque so it stays readable. */
+.md-typeset .mermaid .edgeLabel,
+.md-typeset .mermaid .edgeLabel p {
+  color: var(--cdo-ink);
+  background-color: var(--cdo-paper);
 }
